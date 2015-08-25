@@ -233,8 +233,8 @@ class RouterTest < Test::Unit::TestCase
     assert_equal [[MyCtrl, :bar], {}],
       @router.resources_for("GET", "/")
 
-    assert !@router.has_route?(MyCtrl, :show)
-    assert !@router.has_route?(MyCtrl, :index)
+    assert !@router.route?(MyCtrl, :show)
+    assert !@router.route?(MyCtrl, :index)
   end
 
 
@@ -243,8 +243,8 @@ class RouterTest < Test::Unit::TestCase
       get :show, "/:id"
     end
 
-    assert !@router.has_route?(MyCtrl, :index)
-    assert !@router.has_route?(MyCtrl, :unmounted_action)
+    assert !@router.route?(MyCtrl, :index)
+    assert !@router.route?(MyCtrl, :unmounted_action)
   end
 
 
@@ -254,8 +254,8 @@ class RouterTest < Test::Unit::TestCase
       defaults
     end
 
-    assert @router.has_route?(MyCtrl, :index)
-    assert @router.has_route?(MyCtrl, :unmounted_action)
+    assert @router.route?(MyCtrl, :index)
+    assert @router.route?(MyCtrl, :unmounted_action)
   end
 
 
@@ -279,9 +279,9 @@ class RouterTest < Test::Unit::TestCase
       post :foo, "/"
     end
 
-    assert @router.has_route?(MyCtrl, :bar)
-    assert @router.has_route?(MyCtrl, :foo)
-    assert !@router.has_route?(MyCtrl, :thing)
+    assert @router.route?(MyCtrl, :bar)
+    assert @router.route?(MyCtrl, :foo)
+    assert !@router.route?(MyCtrl, :thing)
   end
 
 
